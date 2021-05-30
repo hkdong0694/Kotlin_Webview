@@ -1,10 +1,10 @@
 package com.example.webview_sample.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
@@ -29,12 +29,12 @@ class TimelineAssetFragment(var title: String): Fragment(), TimelineActivity.OnB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         wv_main.webViewClient = WebViewClient()
+        wv_main.webChromeClient = WebChromeClient()
         var settings = wv_main.settings
         settings.javaScriptEnabled = true
         settings.loadWithOverviewMode = true
         settings.useWideViewPort = true
         settings.domStorageEnabled = true
-        settings.cacheMode = WebSettings.LOAD_NO_CACHE
         wv_main.loadUrl("https://www.naver.com")
         // https://github.com/hkdong0694
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +46,10 @@ class TimelineAssetFragment(var title: String): Fragment(), TimelineActivity.OnB
     }
 
     override fun onBackPressed() {
-        Log.d("TimelineAssetFragment", "Asset 프래그먼트에서 백버튼 호출!")
+        if(wv_main.canGoBack()) {
+            wv_main.goBack()
+        } else {
+            requireActivity().onBackPressed()
+        }
     }
 }

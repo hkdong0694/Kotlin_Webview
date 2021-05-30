@@ -1,16 +1,15 @@
 package com.example.webview_sample.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.webview_sample.R
 import com.example.webview_sample.ui.activity.TimelineActivity
-import kotlinx.android.synthetic.main.custom_tab_layout.*
 import kotlinx.android.synthetic.main.timeline_fragment.*
 
 /**
@@ -33,17 +32,21 @@ class TimelineInfoFragment(var title: String): Fragment(), TimelineActivity.OnBa
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         wv_main.webViewClient = WebViewClient()
+        wv_main.webChromeClient = WebChromeClient()
         var settings = wv_main.settings
         settings.javaScriptEnabled = true
         settings.loadWithOverviewMode = true
         settings.useWideViewPort = true
         settings.domStorageEnabled = true
-        settings.cacheMode = WebSettings.LOAD_NO_CACHE
         wv_main.loadUrl("https://ddangeun.tistory.com/73")
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onBackPressed() {
-        Log.d("TimelineAssetFragment", "Info 프래그먼트에서 백버튼 호출!")
+        if(wv_main.canGoBack()) {
+            wv_main.goBack()
+        } else {
+            requireActivity().onBackPressed()
+        }
     }
 }

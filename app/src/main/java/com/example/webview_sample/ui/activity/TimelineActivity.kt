@@ -25,6 +25,7 @@ class TimelineActivity : AppCompatActivity() {
     }
 
     lateinit var onBackListener:OnBackPressedListener
+    var fragmentIndex = 0
 
     fun setListener(listener: OnBackPressedListener?) {
         if (listener != null) {
@@ -32,17 +33,10 @@ class TimelineActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if(onBackListener != null) {
-            onBackListener.onBackPressed()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        fragmentIndex = 0
         initViewPager()
     }
 
@@ -73,6 +67,7 @@ class TimelineActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 Log.d("MainActivity", "${tab?.position!!} 접근! " )
                 vp_main.currentItem = tab.position
+                fragmentIndex = tab.position
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -84,5 +79,33 @@ class TimelineActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+        if(onBackListener == null) {
+            onBackListener.onBackPressed()
+        } else {
+            when(fragmentIndex) {
+               0 -> {
+                   super.onBackPressed()
+               }
+               1 -> {
+                   fragmentIndex = 0
+                   vp_main.currentItem = fragmentIndex
+               }
+               2 -> {
+                   fragmentIndex = 1
+                   vp_main.currentItem = fragmentIndex
+               }
+               3 -> {
+                   fragmentIndex = 2
+                   vp_main.currentItem = fragmentIndex
+               }
+               4 -> {
+                   fragmentIndex = 3
+                   vp_main.currentItem = fragmentIndex
+               }
+            }
+        }
     }
 }
