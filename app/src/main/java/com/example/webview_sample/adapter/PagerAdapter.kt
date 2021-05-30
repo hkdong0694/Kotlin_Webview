@@ -16,12 +16,12 @@ class PagerAdapter(fm: FragmentManager) :
     FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     // BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT 써줘야함!!
 
-    private var fragmentList: MutableList<TimelineMainFragment> = ArrayList()
+    private var fragmentList: MutableList<Fragment> = ArrayList()
 
     override fun getCount(): Int = fragmentList.size
 
     override fun getItem(position: Int): Fragment = fragmentList[position]
 
-    fun addItems(fragment: TimelineMainFragment) = fragmentList.add(fragment)
+    fun addItems(fragment: Fragment) = fragmentList.add(fragment)
 
 }
