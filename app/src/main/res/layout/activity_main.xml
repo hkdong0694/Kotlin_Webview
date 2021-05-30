@@ -25,11 +25,12 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">-->
 
-<!--                <com.example.tablayout.component.CustomToolbar-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:popupTheme="@style/Theme.AppCompat.Light"-->
-<!--                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+                <com.example.webview_sample.component.CustomToolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/custom"
+                    app:popupTheme="@style/Theme.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 <!--            </com.google.android.material.appbar.CollapsingToolbarLayout>-->
 

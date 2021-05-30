@@ -1,5 +1,6 @@
 package com.example.webview_sample.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.example.webview_sample.adapter.PagerAdapter
 import com.example.webview_sample.ui.fragment.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.custom_common_toolbar.view.*
 import kotlinx.android.synthetic.main.custom_tab_layout.view.*
 
 /**
@@ -44,6 +46,18 @@ class TimelineActivity : AppCompatActivity() {
         val view = LayoutInflater.from(this).inflate(R.layout.custom_tab_layout, null)
         view.tv_title.text = name
         return view
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        if( intent != null ) {
+            val title = intent.getStringExtra("title")
+            val menu = intent.getBooleanExtra("menu", false)
+            val close = intent.getBooleanExtra("close", false)
+            val search = intent.getBooleanExtra("search", false)
+            val searchurl = intent.getStringExtra("searchurl")
+            Log.d("TimelineActivity", "$title : $close : $menu :  $search : $searchurl")
+        }
+        super.onNewIntent(intent)
     }
 
     private fun initViewPager() {
