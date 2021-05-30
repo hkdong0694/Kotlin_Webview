@@ -10,20 +10,18 @@ import androidx.fragment.app.Fragment
 import com.example.webview_sample.R
 import kotlinx.android.synthetic.main.timeline_fragment.*
 
-
 /**
  * Webview_Sample
- * Class: TimelineAssetFragment
+ * Class: TimelineSPayFragement
  * Created by 한경동 (Joel) on 2021/05/29.
  * Description:
  */
-class TimelineAssetFragment(var title: String): Fragment() {
+class TimelineSPayFragment(var title: String): Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.timeline_fragment, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         wv_main.webViewClient = WebViewClient()
@@ -33,8 +31,7 @@ class TimelineAssetFragment(var title: String): Fragment() {
         settings.useWideViewPort = true
         settings.domStorageEnabled = true
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        wv_main.loadUrl("https://www.naver.com")
-        // https://github.com/hkdong0694
+        wv_main.loadUrl("https://www.daum.net/")
         super.onViewCreated(view, savedInstanceState)
     }
 }

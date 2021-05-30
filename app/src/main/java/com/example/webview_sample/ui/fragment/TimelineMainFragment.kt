@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.webview_sample.R
 import kotlinx.android.synthetic.main.custom_tab_layout.*
+import kotlinx.android.synthetic.main.timeline_fragment.*
 
 /**
  * Webview_Sample
@@ -20,13 +23,17 @@ class TimelineMainFragment(var title: String): Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.timeline_fragment, container, false)
-        return view
-    }
+    ): View? = inflater.inflate(R.layout.timeline_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        tv_title.text = title
+        wv_main.webViewClient = WebViewClient()
+        var settings = wv_main.settings
+        settings.javaScriptEnabled = true
+        settings.loadWithOverviewMode = true
+        settings.useWideViewPort = true
+        settings.domStorageEnabled = true
+        settings.cacheMode = WebSettings.LOAD_NO_CACHE
+        wv_main.loadUrl("https://www.google.com/search?q=ekdma&rlz=1C5CHFA_enKR890KR890&oq=ekdma&aqs=chrome..69i57j0i433j69i60l6.461j0j7&sourceid=chrome&ie=UTF-8")
         super.onViewCreated(view, savedInstanceState)
     }
 }

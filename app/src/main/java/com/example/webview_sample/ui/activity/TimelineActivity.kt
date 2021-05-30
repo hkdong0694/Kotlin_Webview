@@ -34,7 +34,7 @@ class TimelineActivity : AppCompatActivity() {
     private fun initViewPager() {
         val adapter = PagerAdapter(supportFragmentManager)
         adapter.addItems(TimelineMainFragment(getString(R.string.fragment_title_today)))
-        adapter.addItems(TimelineSPayFragement(getString(R.string.fragment_title_SPay)))
+        adapter.addItems(TimelineSPayFragment(getString(R.string.fragment_title_SPay)))
         adapter.addItems(TimelineAssetFragment(getString(R.string.fragment_title_assets)))
         adapter.addItems(TimelineDiscoverFragment(getString(R.string.fragment_title_discover)))
         adapter.addItems(TimelineInfoFragment(getString(R.string.fragment_title_info)))
