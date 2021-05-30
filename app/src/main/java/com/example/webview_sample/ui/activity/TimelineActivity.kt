@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.webview_sample.R
 import com.example.webview_sample.adapter.PagerAdapter
 import com.example.webview_sample.ui.fragment.*
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_common_toolbar.view.*
 import kotlinx.android.synthetic.main.custom_tab_layout.view.*
+import kotlin.math.abs
 
 /**
  * Webview_Sample
@@ -40,6 +42,8 @@ class TimelineActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         fragmentIndex = 0
         initViewPager()
+
+
     }
 
     private fun createView(name: String): View {
@@ -92,6 +96,22 @@ class TimelineActivity : AppCompatActivity() {
 
             }
 
+        })
+
+        appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val percentage: Float = abs(verticalOffset) / appBarLayout.totalScrollRange.toFloat()
+            when {
+                percentage < 0.1 ->  Log.d("ok", "ㅇㅇ??")
+                percentage >= 1.0.toFloat() -> {
+                    // AppbarLayout 영역이 완전히 사라졌을 경우!
+                    custom1.visibility = View.VISIBLE
+                    tl_main.visibility = View.GONE
+                }
+                else ->  {
+                    custom1.visibility = View.GONE
+                    tl_main.visibility = View.VISIBLE
+                }
+            }
         })
     }
 
