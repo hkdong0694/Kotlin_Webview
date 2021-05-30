@@ -20,18 +20,18 @@ import kotlinx.android.synthetic.main.custom_tab_layout.view.*
  */
 class TimelineActivity : AppCompatActivity() {
 
-    interface OnBackPressedListener {
-        fun onBackPressed()
-    }
+//    interface OnBackPressedListener {
+//        fun onBackPressed()
+//    }
 
-    lateinit var onBackListener:OnBackPressedListener
+//    lateinit var onBackListener:OnBackPressedListener
     var fragmentIndex = 0
 
-    fun setListener(listener: OnBackPressedListener?) {
-        if (listener != null) {
-            onBackListener = listener
-        }
-    }
+//    fun setListener(listener: OnBackPressedListener?) {
+//        if (listener != null) {
+//            onBackListener = listener
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,30 +82,31 @@ class TimelineActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(onBackListener == null) {
-            onBackListener.onBackPressed()
-        } else {
-            when(fragmentIndex) {
-               0 -> {
-                   super.onBackPressed()
-               }
-               1 -> {
-                   fragmentIndex = 0
-                   vp_main.currentItem = fragmentIndex
-               }
-               2 -> {
-                   fragmentIndex = 1
-                   vp_main.currentItem = fragmentIndex
-               }
-               3 -> {
-                   fragmentIndex = 2
-                   vp_main.currentItem = fragmentIndex
-               }
-               4 -> {
-                   fragmentIndex = 3
-                   vp_main.currentItem = fragmentIndex
-               }
+        when(fragmentIndex) {
+            0 -> {
+                super.onBackPressed()
+            }
+            1 -> {
+                fragmentIndex = 0
+                vp_main.currentItem = fragmentIndex
+            }
+            2 -> {
+                fragmentIndex = 1
+                vp_main.currentItem = fragmentIndex
+            }
+            3 -> {
+                fragmentIndex = 2
+                vp_main.currentItem = fragmentIndex
+            }
+            4 -> {
+                fragmentIndex = 3
+                vp_main.currentItem = fragmentIndex
             }
         }
+//        if(onBackListener == null) {
+//            onBackListener.onBackPressed()
+//        } else {
+//
+//        }
     }
 }

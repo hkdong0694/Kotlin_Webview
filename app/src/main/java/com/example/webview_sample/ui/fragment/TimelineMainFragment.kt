@@ -1,15 +1,14 @@
 package com.example.webview_sample.ui.fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.webview_sample.R
-import com.example.webview_sample.ui.activity.TimelineActivity
+import com.example.webview_sample.web.MyWebViewClient
 import kotlinx.android.synthetic.main.timeline_fragment.*
 
 /**
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.timeline_fragment.*
  * Created by 한경동 (Joel) on 2021/05/29.
  * Description:
  */
-class TimelineMainFragment(var title: String): Fragment(), TimelineActivity.OnBackPressedListener {
+class TimelineMainFragment(var title: String): Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,28 +25,22 @@ class TimelineMainFragment(var title: String): Fragment(), TimelineActivity.OnBa
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.timeline_fragment, container, false)
 
-    override fun onResume() {
-        super.onResume()
-        (activity as TimelineActivity).setListener(this)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        wv_main.webViewClient = WebViewClient()
+        super.onViewCreated(view, savedInstanceState)
+        wv_main.webViewClient = MyWebViewClient()
         wv_main.webChromeClient = WebChromeClient()
         var settings = wv_main.settings
         settings.javaScriptEnabled = true
-        settings.loadWithOverviewMode = true
-        settings.useWideViewPort = true
-        settings.domStorageEnabled = true
-        wv_main.loadUrl("https://www.google.com/search?q=ekdma&rlz=1C5CHFA_enKR890KR890&oq=ekdma&aqs=chrome..69i57j0i433j69i60l6.461j0j7&sourceid=chrome&ie=UTF-8")
-        super.onViewCreated(view, savedInstanceState)
-    }
+        wv_main.loadUrl("https://test-youfriend.s3.ap-northeast-2.amazonaws.com/webview.html")
+        wv_main.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if (keyCode == KeyEvent.KEYCODE_BACK && wv_main.canGoBack()) {
+                    wv_main.goBack()
+                    return true
+                }
+                return false
+            }
+        })
 
-    override fun onBackPressed() {
-        if(wv_main.canGoBack()) {
-            wv_main.goBack()
-        } else {
-            requireActivity().onBackPressed()
-        }
     }
 }
