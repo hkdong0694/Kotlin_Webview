@@ -19,6 +19,27 @@ import kotlinx.android.synthetic.main.custom_tab_layout.view.*
  * Description:
  */
 class TimelineActivity : AppCompatActivity() {
+
+    interface OnBackPressedListener {
+        fun onBackPressed()
+    }
+
+    lateinit var onBackListener:OnBackPressedListener
+
+    fun setListener(listener: OnBackPressedListener?) {
+        if (listener != null) {
+            onBackListener = listener
+        }
+    }
+
+    override fun onBackPressed() {
+        if(onBackListener != null) {
+            onBackListener.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

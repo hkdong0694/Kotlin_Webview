@@ -1,6 +1,7 @@
 package com.example.webview_sample.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.webview_sample.R
+import com.example.webview_sample.ui.activity.TimelineActivity
 import kotlinx.android.synthetic.main.custom_tab_layout.*
 import kotlinx.android.synthetic.main.timeline_fragment.*
 
@@ -17,12 +19,17 @@ import kotlinx.android.synthetic.main.timeline_fragment.*
  * Created by 한경동 (Joel) on 2021/05/29.
  * Description:
  */
-class TimelineDiscoverFragment(var title: String) : Fragment() {
+class TimelineDiscoverFragment(var title: String) : Fragment(), TimelineActivity.OnBackPressedListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.timeline_fragment, container, false)
+
+    override fun onResume() {
+        super.onResume()
+        (activity as TimelineActivity).setListener(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         wv_main.webViewClient = WebViewClient()
@@ -34,6 +41,10 @@ class TimelineDiscoverFragment(var title: String) : Fragment() {
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
         wv_main.loadUrl("https://github.com/hkdong0694")
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onBackPressed() {
+        Log.d("TimelineAssetFragment", "Discover 프래그먼트에서 백버튼 호출!")
     }
 
 }
