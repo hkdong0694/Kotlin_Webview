@@ -1,8 +1,16 @@
 package com.example.webview_sample.ui.activity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.webview_sample.R
+import com.example.webview_sample.adapter.PagerAdapter
+import com.example.webview_sample.ui.fragment.*
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.custom_tab_layout.view.*
 
 /**
  * Webview_Sample
@@ -14,5 +22,46 @@ class TimelineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initViewPager()
+    }
+
+    private fun createView(name: String): View {
+        val view = LayoutInflater.from(this).inflate(R.layout.custom_tab_layout, null)
+        view.tv_title.text = name
+        return view
+    }
+
+    private fun initViewPager() {
+        val adapter = PagerAdapter(supportFragmentManager)
+        adapter.addItems(TimelineMainFragment(getString(R.string.fragment_title_today)))
+        adapter.addItems(TimelineSPayFragement(getString(R.string.fragment_title_SPay)))
+        adapter.addItems(TimelineAssetFragment(getString(R.string.fragment_title_assets)))
+        adapter.addItems(TimelineDiscoverFragment(getString(R.string.fragment_title_discover)))
+        adapter.addItems(TimelineInfoFragment(getString(R.string.fragment_title_info)))
+        vp_main.adapter = adapter
+        vp_main.offscreenPageLimit = adapter.count
+        tl_main.setupWithViewPager(vp_main)
+
+        tl_main.getTabAt(0)?.customView = createView(getString(R.string.fragment_title_today))
+        tl_main.getTabAt(1)?.customView = createView(getString(R.string.fragment_title_SPay))
+        tl_main.getTabAt(2)?.customView = createView(getString(R.string.fragment_title_assets))
+        tl_main.getTabAt(3)?.customView = createView(getString(R.string.fragment_title_discover))
+        tl_main.getTabAt(4)?.customView = createView(getString(R.string.fragment_title_info))
+
+        tl_main.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.d("MainActivity", "${tab?.position!!} 접근! " )
+                vp_main.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
     }
 }

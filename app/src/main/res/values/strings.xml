@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Webview_Sample</string>
+
+
+    <string name="fragment_title_today">투데이</string>
+    <string name="fragment_title_SPay">신한Pay</string>
+    <string name="fragment_title_assets">자산</string>
+    <string name="fragment_title_discover">디스커버</string>
+    <string name="fragment_title_info">안내</string>
+
+
 </resources>
