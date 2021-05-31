@@ -3,6 +3,38 @@ CooordinatorLayout + NestedScrollView + ViewPager + Webview
 스크롤 제어 및 뒤로 가기 제어 Sample 예제
 
 
+## WebView 에 대한 다양한 설정들
+
+~~~kotlin
+
+userAgentString += "Android_inApp" //UserAgent 설정
+
+javaScriptEnabled = true //자바스크립트 사용 설정
+
+javaScriptCanOpenWindowsAutomatically = true //window.open() 동작 설정
+
+useWideViewPort = true //wide viewport 사용 설정
+
+loadWithOverviewMode = true //컨텐츠가 웹뷰보다 클 때, 스크린 크기에 맞추기
+
+builtInZoomControls = false //줌 컨트롤 사용 여부 설정
+
+cacheMode = WebSettings.LOAD_NO_CACHE //캐시 설정
+
+setAppCacheEnabled(false) //앱 내부 캐시 사용 여부 설정
+
+domStorageEnabled = true //로컬 스토리지, 세션 스토리지 사용 여부 설정
+
+allowFileAccess = true //파일 접근 허용 설정
+
+defaultTextEncodingName = "UTF-8" //인코딩 설정
+
+setSupportMultipleWindows(true) //멀티윈도우 지원 여부 설정
+
+databaseEnabled = true //Database Storage API 사용 여부 설정
+
+~~~
+
 ## TimelineActivity.kt
 
 ~~~kotlin

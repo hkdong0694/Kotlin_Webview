@@ -1,5 +1,6 @@
 package com.example.webview_sample.web
 
+import android.graphics.Bitmap
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -11,5 +12,7 @@ import android.webkit.WebViewClient
  * Description:
  */
 class MyWebViewClient: WebViewClient() {
-    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean = false
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+      return false
+    }
 }

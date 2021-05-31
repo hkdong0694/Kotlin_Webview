@@ -37,6 +37,7 @@ class TimelineAssetFragment(var title: String): Fragment() {
         var settings = wv_main.settings
         settings.javaScriptEnabled = true
         wv_main.loadUrl("https://www.naver.com")
+
         wv_main.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
                 if (keyCode == KeyEvent.KEYCODE_BACK && wv_main.canGoBack()) {
