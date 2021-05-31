@@ -33,25 +33,14 @@ class TimelineDiscoverFragment(var title: String) : Fragment() {
         var settings = wv_main.settings
         settings.javaScriptEnabled = true
         wv_main.loadUrl("https://github.com/hkdong0694")
-        wv_main.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-                return if (keyCode == KeyEvent.KEYCODE_BACK && wv_main.canGoBack()) {
-                    wv_main.goBack()
-                    true
-                } else {
-                    var intent = Intent(context, TimelineActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("title", "타임라인")
-                    intent.putExtra("menu", true)
-                    intent.putExtra("close", true)
-                    intent.putExtra("search", true)
-                    intent.putExtra("searchurl", "https://www.naver.com")
-                    context?.startActivity(intent)
-                    false
-                }
+        wv_main.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && wv_main.canGoBack()) {
+                wv_main.goBack()
+                true
+            } else {
+                false
             }
-        })
+        }
 
     }
 }

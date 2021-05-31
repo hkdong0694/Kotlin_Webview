@@ -24,18 +24,7 @@ import kotlin.math.abs
  */
 class TimelineActivity : AppCompatActivity() {
 
-//    interface OnBackPressedListener {
-//        fun onBackPressed()
-//    }
-
-//    lateinit var onBackListener:OnBackPressedListener
     var fragmentIndex = 0
-
-//    fun setListener(listener: OnBackPressedListener?) {
-//        if (listener != null) {
-//            onBackListener = listener
-//        }
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,10 +126,5 @@ class TimelineActivity : AppCompatActivity() {
                 vp_main.currentItem = fragmentIndex
             }
         }
-//        if(onBackListener == null) {
-//            onBackListener.onBackPressed()
-//        } else {
-//
-//        }
     }
 }
