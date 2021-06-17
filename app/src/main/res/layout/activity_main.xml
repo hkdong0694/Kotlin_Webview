@@ -26,12 +26,29 @@
                 app:contentScrim="@android:color/transparent"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
-            <com.example.webview_sample.component.CustomToolbar
-                android:id="@+id/custom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:popupTheme="@style/Theme.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vg_dim"
+                    >
+
+                    <include
+                        layout="@layout/custom_common_toolbar"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="#80000000"
+                        android:id="@+id/v_dim"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -43,14 +60,6 @@
                     app:tabGravity="fill"
                     app:tabIndicatorColor="@color/cardview_dark_background"
                     app:tabMode="fixed" />
-
-            <com.example.webview_sample.component.CustomToolbar
-                android:id="@+id/custom1"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:popupTheme="@style/Theme.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

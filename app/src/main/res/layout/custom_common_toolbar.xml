@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/vg_container"
-    style="@style/Theme.Design.Light.NoActionBar"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="56dp">
 
@@ -15,11 +16,12 @@
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:letterSpacing="-0.01"
-        android:lineSpacingExtra="2dp"
         android:text="테스트 용도입니다."
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="#313234"
-        android:textSize="16dp"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:lineSpacingExtra="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,7 +33,7 @@
         android:layout_height="38dp"
         android:layout_marginLeft="8dp"
         android:scaleType="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
