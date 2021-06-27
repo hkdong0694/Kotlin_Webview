@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <title>웹뷰 테스트</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <style type="text/css">
+    @font-face { font-family: 'B Homa'; src: url('font/BHOMA.TTF');}
+    @font-face { font-family: 'B Lotus'; src: url('fonts/BLOTUS.TTF');}
+    @font-face { font-family: 'B Lotus Bold'; src: url('fonts/BLOTUSBD.TTF');}
+    </style>
+</head>
+<body>
+<h1>웹뷰 테스트해보겠습니다.</h1>
+<p>
+<hr>
+<h4>웹 api</h4>
+<button type="button" onclick="forwardPage();">다음 페이지</button>
+<hr>
+</p>
+
+<p>
+<hr>
+<h4>mobile interface</h4>
+<button type="button" onclick="showAndroidToast('테스트 입니다.');">메시지</button>
+<button type="button" onclick="closeActivity();">앱 종료</button>
+<button type="button" onclick="onBackPress();">backward</button>
+<button type="button" onclick="onForward();">forward - 안드로이드는 forward가 브라우저에서만 가능</button>
+<hr>
+</p>
+
+</body>
+
+<script>
+  /**
+   * forward page
+   *
+   */
+  function forwardPage() {
+    console.log('forward next page');
+    location.href = './webview2.html';
+  }
+
+  /**
+   * backward page
+   *
+   */
+  function backwardPage() {
+    console.log('backward prev page');
+    history.back();
+  }
+
+  /**
+   * show toast
+   *
+   * @param string toast message
+   */
+  function showAndroidToast(string) {
+    console.log('android toast interface');
+    Interface.showToast(string);
+  }
+
+  /**
+   * close activity
+   */
+  function closeActivity() {
+    console.log('close activity');
+    Interface.closeActivity();
+  }
+
+  /**
+   * back press event
+   */
+  function onBackPress() {
+    console.log('on backPress');
+    Interface.onBackPress();
+  }
+
+  /**
+   * forward press event
+   */
+  function onForward() {
+    console.log('on forward');
+    Interface.onForward();
+  }
+
+</script>
+</html>

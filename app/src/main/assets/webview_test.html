@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <title>웹뷰 테스트2</title>
+<body>
+<h1>웹뷰 테스트 2페이지</h1>
+<p>
+<hr>
+<h4>웹 api</h4>
+<button type="button" onclick="backwardPage();">이전 페이지</button>
+<hr>
+</p>
+
+<p>
+<hr>
+<h4>mobile interface</h4>
+<button type="button" onclick="showAndroidToast('테스트 입니다.');">메시지</button>
+<button type="button" onclick="closeActivity();">앱 종료</button>
+<button type="button" onclick="onBackPress();">backward</button>
+<button type="button" onclick="onForward();">forward - 안드로이드는 forward가 브라우저에서만 가능</button>
+<hr>
+</p>
+
+</body>
+
+<script>
+  /**
+   * forward page
+   */
+  function forwardPage() {
+    console.log('forward next page');
+    location.href = './webview2.html';
+  }
+
+  /**
+   * backward page
+   */
+  function backwardPage() {
+    console.log('backward prev page');
+    history.back();
+  }
+
+  /**
+   * show toast
+   * @param string toast message
+   */
+  function showAndroidToast(string) {
+    console.log('android toast interface');
+    Interface.showToast(string);
+  }
+
+  /**
+   * close activity
+   */
+  function closeActivity() {
+    console.log('close activity');
+    Interface.closeActivity();
+  }
+
+  /**
+   * back press event
+   */
+  function onBackPress() {
+    console.log('on backPress');
+    Interface.onBackPress();
+  }
+
+  /**
+   * forward press event
+   */
+  function onForward() {
+    console.log('on forward');
+    Interface.onForward();
+  }
+</script>
+</html>
